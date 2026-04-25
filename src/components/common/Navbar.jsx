@@ -1,13 +1,16 @@
 import { IconMenu2 } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ContextData } from '../../context/Context'
+import { useContext } from 'react'
 
 export const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
 
+    const {loggedInUser} = useContext(ContextData)
+
     const tabs = [
- 
-        { title: "Register", path: '/register' },
+         { title: "Register", path: '/register' },
         { title: "Login", path: '/login' }
         
     ]

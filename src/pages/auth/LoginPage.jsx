@@ -43,7 +43,7 @@ export const LoginPage = () => {
       if (res.data.success) {
         alert(res.data.message);
         localStorage.setItem("token", res.data.token);
-        navigate("/");
+        navigate("/customer");
       } else {
         alert(res.data.message);
       }

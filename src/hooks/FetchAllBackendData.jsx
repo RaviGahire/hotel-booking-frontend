@@ -1,7 +1,7 @@
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const FetchUsers = async (endpoint, method = "GET", data = null) => {
+export const FetchAllBackendData = async (endpoint, method = "GET", data = null) => {
   try {
     const token = localStorage.getItem("token");
 
