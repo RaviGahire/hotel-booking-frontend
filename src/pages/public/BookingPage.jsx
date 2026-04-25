@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { InputField, SelectField } from '../../components/form/FormFields'
 
 export const BookingPage = () => {
-const [booking, setBooking] = useState({
+  const [booking, setBooking] = useState({
     roomId: "",
     checkIn: "",
     checkOut: "",
@@ -10,16 +10,19 @@ const [booking, setBooking] = useState({
     status: "pending",
   })
 
-const handleSubmit =(e) =>{
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-}
-const handleChange =()=>{
-  
-}
+  }
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setBooking({ ...booking, [name]: value })
+
+  }
 
   return (
-     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded border w-full max-w-md space-y-4"
@@ -48,7 +51,7 @@ const handleChange =()=>{
           name="roomType"
           value={booking.roomType}
           onChange={handleChange}
-          options={["Standard","Deluxe","standard"]}
+          options={["Standard", "Deluxe", "standard"]}
         />
 
         <InputField
