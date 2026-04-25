@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+:root {
+  --color-neutral-300: #d4d4d4;
+  --pattern: var(--color-neutral-300);
+}

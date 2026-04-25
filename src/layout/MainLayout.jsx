@@ -1,14 +1,13 @@
 import React from 'react'
-import { Header } from '../components/Header'
+import { Header } from '../components/common/Header'
 
 export const MainLayout = ({ children }) => {
   return (
     <>
-    <Header/>
-        
-        <main>
-          {children}
-        </main>
+      {/* <Header /> */}
+      <main>
+        {children}
+      </main>
     </>
   )
 }

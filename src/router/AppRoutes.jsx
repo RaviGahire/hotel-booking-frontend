@@ -1,11 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { MainLayout } from '../layout/MainLayout'
-import { HomePage } from '../pages/HomePage'
-import { About } from '../pages/About'
-import { Contact } from '../pages/Contact'
-import { BookingForm } from '../components/form/Book'
-import { Login } from '../components/form/Login'
-import { Register } from '../components/form/Register'
+import { HomePage } from '../pages/public/HomePage'
+import { RegisterPage } from '../pages/auth/RegisterPage'
+import { LoginPage } from '../pages/auth/LoginPage'
 
 export const AppRoutes = () => {
     return (
@@ -13,9 +10,9 @@ export const AppRoutes = () => {
            <MainLayout>
              <Routes>
                 <Route path='/' element={<HomePage/>}/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/register' element={<Register/>}/>
-                <Route path='/book' element={<BookingForm/>}/>
+                <Route path='/register' element={<RegisterPage/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                
             </Routes>
            </MainLayout>
         </Router>

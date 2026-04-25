@@ -1,12 +1,10 @@
-import { AppRoutes } from './router/AppRoutes'
-import './App.css'
-function App() {
- 
+import {AppRoutes} from "./router/AppRoutes"
 
+const App = () => {
   return (
-    <>
-    <AppRoutes/>
-    </>
+   <>
+      <AppRoutes/>
+   </>
   )
 }
 

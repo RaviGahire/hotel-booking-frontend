@@ -8,7 +8,7 @@ export const InputField = ({
   error,
 }) => {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-4 relative">
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-1">
           {label}
@@ -29,7 +29,7 @@ export const InputField = ({
         }`}
       />
 
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-xs mt-1 absolute top-15">{error}</p>}
     </div>
   );
 };
@@ -72,12 +72,14 @@ export const SelectField = ({
   label,
   name,
   value,
+  defaultOpt = "Select",
   onChange,
   options = [],
   error,
 }) => {
   return (
     <div className="w-full mb-4">
+      
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-1">
           {label}
@@ -86,19 +88,20 @@ export const SelectField = ({
 
       <select
         name={name}
-        value={value}
+        value={value || ""}
         onChange={onChange}
-        className={`w-full px-3 py-2 rounded-lg border text-sm bg-white focus:outline-none focus:ring-2 transition
+        className={`w-full px-3 py-2 text-black cursor-pointer rounded-lg border text-sm bg-white focus:outline-none focus:ring-2 transition
         ${
           error
             ? "border-red-500 focus:ring-red-400"
             : "border-gray-300 focus:ring-blue-400"
         }`}
       >
-        <option value="">Select</option>
+        <option value="">{defaultOpt}</option>
+
         {options.map((opt, i) => (
-          <option key={i} value={opt.value}>
-            {opt.label}
+          <option key={i} value={opt}>
+            {opt}
           </option>
         ))}
       </select>
