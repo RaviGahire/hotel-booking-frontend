@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { InputField, SelectField } from '../../components/form/FormFields'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { LayOutSkeleton, PageSkeleton } from '../../components/common/PageSkeleton';
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -12,12 +13,13 @@ export const RegisterPage = () => {
     email: "",
     password: "",
     fullName: "",
-    role:"",
+    role: "",
     confirmPassword: "",
-    
+
   });
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +28,7 @@ export const RegisterPage = () => {
 
   const validate = (formData) => {
     const errorData = {}
-   if (!formData.role) {
+    if (!formData.role) {
       errorData.role = "Please select your role"
     }
 
@@ -67,8 +69,8 @@ export const RegisterPage = () => {
       }
       setFormData(
         {
-          role:"",
-          fullName:"",
+          role: "",
+          fullName: "",
           userName: "",
           email: "",
           password: "",
@@ -82,81 +84,112 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-6 md:p-8 rounded-2xl shadow-lg space-y-5"
-      >
-        <h2 className="text-2xl font-bold text-center text-gray-800">
-          Create Account
-        </h2>
-        <SelectField
-          label="Select role"
-          defaultOpt="Select your role"
-          name={'role'}
-          value={formData.role}
-          onChange={handleChange}
-          options={["customer", "vendor", "admin"]}
-          error={errors.role}
-        />
+    <LayOutSkeleton bgImage={'https://images.pexels.com/photos/35215789/pexels-photo-35215789.jpeg'}>
 
-        <InputField
-          label="fullName"
-          name="fullName"
-          placeholder="Enter your fullname"
-          value={formData.fullName}
-          onChange={handleChange}
-          error={errors.fullName}
-        />
-        <InputField
-          label="Username"
-          name="userName"
-          placeholder="Enter your username"
-          value={formData.userName}
-          onChange={handleChange}
-          error={errors.userName}
-        />
+      <div className="absolute top-30  left-0 right-0 p-5 flex items-center justify-center max-w-7xl">
 
-        <InputField
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={handleChange}
-          error={errors.email}
-        />
-        <InputField
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-          value={formData.password}
-          onChange={handleChange}
-          error={errors.password}
-        />
-        <InputField
-          label="Confirm Password"
-          name="confirmPassword"
-          type="password"
-          placeholder="Confirm password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          error={errors.confirmPassword}
-        />
-        <button
-          type="submit"
-          className="w-full cursor-pointer bg-black text-white py-2.5 rounded-lg font-medium hover:bg-gray-800 transition"
-        >
-          Register
-        </button>
-        <p className="text-sm text-center text-gray-600">
-          Already have an account?{" "}
-          <Link to={'/login'} className="text-black font-medium cursor-pointer">
-            Login
-          </Link>
-        </p>
-      </form>
-    </div>
+        {/* Card with blur */}
+        <div className=" backdrop-blur-sm rounded-md 
+    p-3 md:p-4 shadow-2xl w-full max-w-3xl">
+
+          {/* Header */}
+          <div className="mb-4">
+            <p className="text-[#ecedee]/50 text-xs font-semibold tracking-widest uppercase mb-1">
+              Get Started
+            </p>
+            <h2 className="text-2xl font-bold text-[#ecedee] tracking-tight">
+              Create Account
+            </h2>
+          </div>
+
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <SelectField
+              label="Select role"
+              defaultOpt="Select your role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              options={["customer", "vendor"]}
+              error={errors.role}
+            />
+
+            <div className="grid grid-cols-2 gap-3">
+              <InputField
+                label="Full Name"
+                name="fullName"
+                placeholder="Your full name"
+                value={formData.fullName}
+                onChange={handleChange}
+                error={errors.fullName}
+              />
+              <InputField
+                label="Username"
+                name="userName"
+                placeholder="Your username"
+                value={formData.userName}
+                onChange={handleChange}
+                error={errors.userName}
+              />
+            </div>
+
+            <InputField
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              error={errors.email}
+            />
+
+            <div className="grid grid-cols-2 gap-3">
+              <InputField
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+              />
+              <InputField
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full cursor-pointer
+          bg-[#ecedee] text-[#042053]
+          font-bold text-sm tracking-tight
+          py-2.5 rounded-lg
+          hover:bg-white transition-all duration-200
+          shadow-md mt-1"
+            >
+              Create Account
+            </button>
+
+            <p className="text-sm text-center text-black">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-[#021425] font-semibold hover:text-gray-500 transition-colors duration-200"
+              >
+                Login →
+              </Link>
+            </p>
+          </form>
+        </div>
+
+      </div>
+
+
+    </LayOutSkeleton>
   )
 }

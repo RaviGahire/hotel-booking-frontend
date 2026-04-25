@@ -2,6 +2,7 @@ import { forwardRef, useState } from "react";
 import { InputField } from "../../components/form/FormFields";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LayOutSkeleton } from "../../components/common/PageSkeleton";
 
 const API_URL = import.meta.env.VITE_API_URL;
 export const LoginPage = () => {
@@ -52,62 +53,70 @@ export const LoginPage = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md flex flex-col gap-0.5 bg-white p-6 md:p-8 rounded-2xl shadow-lg space-y-5"
-      >
-        <h2 className="text-2xl font-bold text-center text-gray-800">
-          Welcome Back
+ <LayOutSkeleton bgImage={'https://images.pexels.com/photos/35215789/pexels-photo-35215789.jpeg'}>
+
+  <div className="absolute inset-0 top-30  flex items-center justify-center px-4">
+
+    {/* Card */}
+    <div className="backdrop-blur-sm border border-white/15 rounded-2xl 
+      p-5 md:p-7 shadow-2xl w-full max-w-2xl">
+
+      {/* Header */}
+      <div className="mb-5">
+        <p className="text-[#ecedee]/50 text-xs font-semibold tracking-widest uppercase mb-1">
+          Get Started
+        </p>
+        <h2 className="text-2xl font-bold text-[#ecedee] tracking-tight">
+          Login
         </h2>
+      </div>
 
-        <div>
-          <InputField
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            error={errors.email}
-          />
-        </div>
-
-        <div>
-          <InputField
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <InputField
+          label="Email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          error={errors.email}
+        />
+            <InputField
             label="Password"
             name="password"
             type="password"
-            placeholder="Enter your password"
+            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             error={errors.password}
           />
-        </div>
-
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-600 cursor-pointer hover:underline">
-            Forgot Password?
-          </span>
-        </div>
-
+       
         <button
           type="submit"
-          className="w-full cursor-pointer bg-black text-white py-2.5 rounded-lg font-medium hover:bg-gray-800 transition"
+          className="w-full cursor-pointer
+            bg-[#ecedee] text-[#042053]
+            font-bold text-sm tracking-tight
+            py-2.5 rounded-lg
+            hover:bg-white transition-all duration-200
+            shadow-md mt-1"
         >
           Login
         </button>
 
-        <p className="text-sm text-center text-gray-600">
-          Don’t have an account?{" "}
+        <p className="text-sm text-center text-neutral-800">
+          Don't have an account?{" "}
           <Link
-            to={"/register"}
-            className="text-black font-medium cursor-pointer"
+            to="/register"
+            className="text-neutral-700 font-semibold hover:text-white transition-colors duration-200"
           >
-            Register
+            Register →
           </Link>
         </p>
+
       </form>
     </div>
+  </div>
+
+</LayOutSkeleton>
   );
 };
