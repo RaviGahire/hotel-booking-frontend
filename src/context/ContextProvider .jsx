@@ -8,6 +8,9 @@ export const ContextProvider = ({ children }) => {
 
   const [loggedInUser, setLoggedInUser] = useState({});
   const [hotels, setHotels] = useState([]);
+  const [mybooking,setMyBooking] =useState({})
+
+  // console.log(mybooking)
 
 
   const logout = () => {
@@ -22,9 +25,13 @@ export const ContextProvider = ({ children }) => {
       try {
         const user = await FetchAllBackendData("auth/users/me");
         const hotelsData = await FetchAllBackendData("admin/hotels");
+        const myBookings = await FetchAllBackendData("/booking/my-bookings");
+    
+console.log(myBookings)
 
         setLoggedInUser(user);
         setHotels(hotelsData);
+        setMyBooking(myBookings)
       } catch (err) {
         console.log(err);
       }

@@ -11,6 +11,8 @@ import { HotelDetailPage } from '../pages/public/HotelDetailPage'
 import { AddHotel } from '../components/hotel/AddHotel'
 import { UpdateHotel } from '../components/hotel/UpdateHotel'
 import { PaymentForm } from '../components/payment/PaymentForm'
+import { ExploreHotels } from '../pages/public/ExploreHotels'
+import { Deals } from '../pages/public/Deals'
 
 export const AppRoutes = () => {
     return (
@@ -28,6 +30,8 @@ export const AppRoutes = () => {
                     <Route path='/add-hotel' element={<AddHotel />} />
                     <Route path='/update-hotel/:hotelId' element={<UpdateHotel />} />
                     <Route path='/confirm-payment' element={<PaymentForm />} />
+                    <Route path='/explore' element={<ExploreHotels/>} />
+                    <Route path='/deals' element={<Deals/>} />
                 </Routes>
             </MainLayout>
         </Router>

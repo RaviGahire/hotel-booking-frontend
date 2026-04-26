@@ -3,6 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const FetchAllBackendData = async (endpoint, method = "GET", data = null) => {
   try {
+    console.log(endpoint)
     const token = localStorage.getItem("token");
     // console.log(endpoint,method,data)
         const res = await axios({

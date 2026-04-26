@@ -1,16 +1,99 @@
-# React + Vite
+# 🎨 Frontend - Hotel Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the Hotel Booking System built using React and Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tech Stack
 
-## React Compiler
+* React.js
+* Tailwind CSS
+* Axios
+* React Router
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📦 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+frontend/
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── context/
+│   ├── services/
+│   ├── App.jsx
+│   └── main.jsx
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 2️⃣ Run Application
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌐 Features
+
+* Responsive UI (Mobile + Desktop)
+* Hotel listing with cards/grid
+* Hotel detail page
+* Booking form
+* Authentication (Login/Register)
+* Dashboard (User & Vendor)
+
+---
+
+## 🔄 Data Flow
+
+1. User interacts with UI
+2. API request sent using Axios
+3. Backend processes request
+4. Data displayed dynamically
+
+---
+
+## 📱 Pages
+
+* Home Page
+* Hotel Listing
+* Hotel Details
+* Booking Page
+* Login / Register
+* Dashboard
+
+---
+
+## 🎨 UI Design
+
+* Clean and modern corporate layout
+* Fully responsive design
+* Tailwind utility-based styling
+
+---
+
+## 📌 Notes
+
+* Backend must be running before frontend
+* Update API base URL in `services/api.js`
+
+---
+
+## 🧑‍💻 Author
+
+Ravi Gahire
+GitHub: https://github.com/RaviGahire

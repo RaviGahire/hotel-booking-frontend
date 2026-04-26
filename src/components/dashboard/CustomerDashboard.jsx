@@ -8,11 +8,11 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL
 export const CustomerDashboard = () => {
-  const { loggedInUser, hotels ,logout } = useContext(ContextData)
+  const { loggedInUser, hotels, logout } = useContext(ContextData)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userImage, setUserImage] = useState('default-pic.jpg')
 
-  console.log(loggedInUser)
+  // console.log(loggedInUser)
 
   const handleDelete = async (hotelId) => {
 
@@ -91,51 +91,57 @@ export const CustomerDashboard = () => {
 
               {/* Header Action */}
               <div className="flex items-center justify-between bg-white p-4 border border-slate-200 rounded-xl shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-800">Manage Booking</h3>
+                <h3 className="text-lg font-semibold text-slate-800">Your Booking</h3>
                 <Link to={'/hotels'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
-                  Book Room 
+                  Book Room Now
                 </Link>
                 {/* Logout */}
-                 <button onClick={logout} className="bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
+                <button onClick={logout} className="bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
                   Logout
-                </button> 
+                </button>
               </div>
 
-              {/* Hotel Info Table */}
-              <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-                <div className="overflow-auto h-62">
-                  <table className="w-full text-left border-collapse">
-                    <thead className="bg-slate-50 border-b border-slate-200">
-                      <tr>
-                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Hotel Name</th>
-                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">City</th>
-                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Ratings</th>
-                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {hotels.map((hotel) => (
-                        <tr className="hover:bg-slate-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-slate-700">{hotel.name}</td>
-                          <td className="px-6 py-4 text-slate-600">{hotel?.location?.city}</td>
-                          <td className="px-6 py-4">
-                            <span className="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">{hotel?.rating}</span>
-                          </td>
-                          <td className="px-6 flex gap-3 py-4">
-                            <Link to={`/update-hotel/${hotel._id}`}
-                              state={{ data: hotel }}
-                              className="text-indigo-600 hover:text-indigo-800 font-medium text-sm">Edit</Link>
-                            <button onClick={() => { handleDelete(hotel?._id) }} className="text-red-600 hover:text-red-800 font-medium text-sm">Delete</button>
-                          </td>
-                        </tr>
-                      ))
-
-                      }
-                      {/* More rows... */}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              {/* user Booking table Info Table */}
+          <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+  {/* Added h-96 for vertical scroll and overflow-auto for both directions */}
+  <div className="overflow-auto h-96"> 
+    {/* Added min-w-[1000px] to force horizontal scroll when container is narrow */}
+    <table className="w-full min-w-250 text-left border-collapse">
+      <thead className="bg-slate-50 border-b border-slate-200 sticky top-0 z-10">
+        <tr>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Hotel Name</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">City</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Check-In</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Check-Out</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Total Price</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
+          <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Action</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-slate-100">
+        {hotels.map((hotel) => (
+          <tr key={hotel._id} className="hover:bg-slate-50 transition-colors">
+            <td className="px-6 py-4 font-medium text-slate-700">{hotel.name}</td>
+            <td className="px-6 py-4 text-slate-600">{hotel?.location?.city}</td>
+            <td className="px-6 py-4">
+              <span className="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">{hotel?.rating}</span>
+            </td>
+            {/* Empty cells for now to match headers */}
+            <td className="px-6 py-4">--</td>
+            <td className="px-6 py-4">--</td>
+            <td className="px-6 py-4">--</td>
+            <td className="px-6 flex gap-3 py-4">
+              <Link to={`/update-hotel/${hotel._id}`}
+                state={{ data: hotel }}
+                className="text-indigo-600 hover:text-indigo-800 font-medium text-sm">Edit</Link>
+              <button onClick={() => { handleDelete(hotel?._id) }} className="text-red-600 hover:text-red-800 font-medium text-sm">Delete</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
 
             </div>
           </div>

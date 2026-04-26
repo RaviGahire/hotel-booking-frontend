@@ -56,15 +56,9 @@ export const PaymentForm = () => {
             }else{
                 alert(res?.data?.message || "Payment Erorr")
             }
-
-
-
-
         } catch (error) {
             console.log(error)
         }
-
-
     };
 
     return (
