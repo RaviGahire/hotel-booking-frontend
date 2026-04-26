@@ -93,7 +93,10 @@ export const VendorDashboard = () => {
               <div className="flex items-center justify-between bg-white p-4 border border-slate-200 rounded-xl shadow-sm">
                 <h3 className="text-lg font-semibold text-slate-800">Manage Inventory</h3>
                 <Link to={'/add-hotel'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
-                  + Add New Hotel
+                  + Add Hotel
+                </Link>
+                  <Link to={'/add-room'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
+                  + Add Room
                 </Link>
                 {/* Logout */}
                  <button onClick={logout} className="bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">

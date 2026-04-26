@@ -13,6 +13,7 @@ import { UpdateHotel } from '../components/hotel/UpdateHotel'
 import { PaymentForm } from '../components/payment/PaymentForm'
 import { ExploreHotels } from '../pages/public/ExploreHotels'
 import { Deals } from '../pages/public/Deals'
+import { CreateRoom } from '../components/room/CreateRoom'
 
 export const AppRoutes = () => {
     return (
@@ -32,6 +33,7 @@ export const AppRoutes = () => {
                     <Route path='/confirm-payment' element={<PaymentForm />} />
                     <Route path='/explore' element={<ExploreHotels/>} />
                     <Route path='/deals' element={<Deals/>} />
+                    <Route path='/add-room' element={<CreateRoom/>} />
                 </Routes>
             </MainLayout>
         </Router>
