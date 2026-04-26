@@ -8,7 +8,7 @@ export const ContextProvider = ({ children }) => {
 
   const [loggedInUser, setLoggedInUser] = useState({});
   const [hotels, setHotels] = useState([]);
-  const [mybooking,setMyBooking] =useState({})
+  const [mybooking, setMyBooking] = useState({})
 
   // console.log(mybooking)
 
@@ -17,7 +17,7 @@ export const ContextProvider = ({ children }) => {
     localStorage.removeItem("token");
     setLoggedInUser(null);
     alert("Logged out succesfully")
-   window.location.href = '/login';
+    window.location.href = '/login';
   };
 
   useEffect(() => {
@@ -25,13 +25,12 @@ export const ContextProvider = ({ children }) => {
       try {
         const user = await FetchAllBackendData("auth/users/me");
         const hotelsData = await FetchAllBackendData("admin/hotels");
-        const myBookings = await FetchAllBackendData("/booking/my-bookings");
-    
-console.log(myBookings)
+        const myBookings = await FetchAllBackendData("booking/my-bookings");
 
-        setLoggedInUser(user);
-        setHotels(hotelsData);
-        setMyBooking(myBookings)
+        setLoggedInUser(user?.data?.data);
+        setHotels(hotelsData?.data?.data);
+        setMyBooking(myBookings?.data);
+
       } catch (err) {
         console.log(err);
       }
@@ -41,7 +40,7 @@ console.log(myBookings)
   }, []);
 
   return (
-    <ContextData.Provider value={{ logout, hotels, loggedInUser }}>
+    <ContextData.Provider value={{ logout, hotels, loggedInUser,mybooking }}>
       {children}
     </ContextData.Provider>
   );

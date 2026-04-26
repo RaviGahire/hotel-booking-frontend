@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const FetchAllBackendData = async (endpoint, method = "GET", data = null) => {
   try {
-    console.log(endpoint)
+    // console.log(endpoint)
     const token = localStorage.getItem("token");
     // console.log(endpoint,method,data)
         const res = await axios({
@@ -19,7 +19,9 @@ export const FetchAllBackendData = async (endpoint, method = "GET", data = null)
       console.log(res?.data?.message);
     }
 
-    return res.data.data;
+// console.log("Mybookings" ,res.data)
+
+    return res
 
   } catch (error) {
     console.error(error.message);
