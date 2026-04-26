@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { InputField, SelectField } from '../../components/form/FormFields'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { LayOutSkeleton } from '../../components/common/PageSkeleton'
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ export const BookingPage = () => {
   //Hotel Id
   const location = useLocation();
   const hotelId = location.state?.hotelId;
+  const navigate = useNavigate()
   const [errors, setErrors] = useState({})
 
   // console.log("Hotel id" , hotelId)
@@ -18,7 +19,6 @@ export const BookingPage = () => {
     checkIn: "",
     checkOut: "",
     totalAmount: "",
-    status: "",
   })
   // console.log(booking)
 
@@ -39,9 +39,7 @@ export const BookingPage = () => {
     if (!booking.totalAmount) {
       errorData.totalAmount = "Amount is required";
     }
-    if (!booking.status) {
-      errorData.status = "Please select the status";
-    }
+
     setErrors(errorData);
     return errorData;
   };
@@ -57,10 +55,9 @@ export const BookingPage = () => {
     // console.log(booking)
 
     try {
-
       const token = localStorage.getItem("token")
       const res = await axios.post(
-        `${API_URL}/booking`,
+        `${API_URL}/booking/hotel/${hotelId}`,
         booking,
         {
           headers: {
@@ -68,17 +65,23 @@ export const BookingPage = () => {
           },
         }
       )
-
       console.log(res)
-
       if (res?.data?.success) {
         alert("Booking successfull")
+        navigate('/confirm-payment', {
+          state: {
+            bookingId: res?.data?.booking?._id,
+            amount: res?.data?.booking?.totalAmount
+          }
+        }
+
+        )
       } else {
         alert(res?.data?.message || "Something went wrong")
       }
 
     } catch (error) {
-      alert(error.response?.data?.message)
+      alert(error.response?.data?.message || "An error occurred")
       console.log(error)
     }
   }
@@ -124,7 +127,7 @@ export const BookingPage = () => {
               onChange={handleChange}
               error={errors.totalAmount}
             />
-            <SelectField
+            {/* <SelectField
               label="status"
               name="status"
               options={["confirmed", "cancelled", "completed"]}
@@ -132,7 +135,7 @@ export const BookingPage = () => {
               value={booking.status}
               onChange={handleChange}
               error={errors.status}
-            />
+            /> */}
 
             <button
               type="submit"

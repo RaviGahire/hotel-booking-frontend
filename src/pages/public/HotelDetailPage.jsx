@@ -96,7 +96,7 @@ const HotelGrid = ({ data }) => {
                   <div>
                     <p className="text-xs text-[#ecedee]/40 font-medium">Per night</p>
                     <p className="text-sm font-bold text-[#ecedee]">
-                      ₹{hotel.price?.toLocaleString() ?? '—'}
+                      ₹{hotel?.price || "Not"}
                     </p>
                   </div>
                   <button

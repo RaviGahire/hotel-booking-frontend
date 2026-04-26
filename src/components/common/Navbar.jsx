@@ -37,22 +37,18 @@ export const Navbar = () => {
 
   }
 
-  const dashboard = dashboardLinks(loggedInUser.role)
+  const dashboard = dashboardLinks(loggedInUser?.role)
 
   // console.log(navigateLink)
 
   return (
     <nav className="relative z-100 flex items-center justify-between px-1 py-1">
-
-      {/* Left — Logo + Nav Links */}
       <div className="flex items-center gap-6">
-
-        {/* Logo */}
-        <div className="text-base font-bold text-white 
+        <Link to={'/'} className="text-base font-bold text-white 
           bg-white/15 border border-white/25 
           px-3 py-1.5 rounded-md tracking-tight backdrop-blur-sm">
           Logo
-        </div>
+        </Link>
 
         {/* Desktop nav links — next to logo */}
         <div className="hidden md:flex items-center gap-1">

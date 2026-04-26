@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { ContextData } from './Context'
 import { FetchAllBackendData } from '../hooks/FetchAllBackendData'
-import { useNavigate } from 'react-router-dom'
+
 
 
 export const ContextProvider = ({ children }) => {
+
   const [loggedInUser, setLoggedInUser] = useState({});
   const [hotels, setHotels] = useState([]);
 
+
   const logout = () => {
     localStorage.removeItem("token");
-    setLoggedInUser({});
+    setLoggedInUser(null);
+    alert("Logged out succesfully")
+   window.location.href = '/login';
   };
 
   useEffect(() => {

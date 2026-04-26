@@ -8,7 +8,7 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL
 export const VendorDashboard = () => {
-  const { loggedInUser, hotels } = useContext(ContextData)
+  const { loggedInUser, hotels ,logout } = useContext(ContextData)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userImage, setUserImage] = useState('default-pic.jpg')
 
@@ -95,6 +95,10 @@ export const VendorDashboard = () => {
                 <Link to={'/add-hotel'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
                   + Add New Hotel
                 </Link>
+                {/* Logout */}
+                 <button onClick={logout} className="bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow-md">
+                  Logout
+                </button> 
               </div>
 
               {/* Hotel Info Table */}
