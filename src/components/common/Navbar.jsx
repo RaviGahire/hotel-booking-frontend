@@ -1,6 +1,6 @@
 import { IconMenu2, IconX, IconUser, IconChevronDown } from '@tabler/icons-react'
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { ContextData } from '../../context/Context'
 
@@ -20,8 +20,29 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const { loggedInUser } = useContext(ContextData)
 
+  //navigate links
+  const dashboardLinks = (role) => {
+
+    if (role === "customer") {
+      return '/customer'
+    }
+    if (role === "admin") {
+      return "/admin"
+    }
+    if (role === "vendor") {
+      return "/vendor"
+    }
+
+    return;
+
+  }
+
+  const dashboard = dashboardLinks(loggedInUser.role)
+
+  // console.log(navigateLink)
+
   return (
-    <nav className="relative z-[100] flex items-center justify-between px-1 py-1">
+    <nav className="relative z-100 flex items-center justify-between px-1 py-1">
 
       {/* Left — Logo + Nav Links */}
       <div className="flex items-center gap-6">
@@ -56,7 +77,9 @@ export const Navbar = () => {
       {/* Right — Auth / User */}
       <div className="hidden md:flex items-center gap-2">
         {loggedInUser ? (
-          <div className="flex items-center gap-2 
+          <Link
+           to={dashboard}
+            className="flex items-center gap-2 
             bg-white/10 border border-white/20 
             px-3 py-1.5 rounded-md cursor-pointer hover:bg-white/20 transition-all duration-200">
             <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
@@ -64,7 +87,7 @@ export const Navbar = () => {
             </div>
             <span className="text-white/90 text-sm font-medium">{loggedInUser.name}</span>
             <IconChevronDown size={14} className="text-white/60" />
-          </div>
+          </Link>
         ) : (
           <>
             <NavLink to="/register"
@@ -99,7 +122,7 @@ export const Navbar = () => {
 
       {/* Mobile Dropdown */}
       <div className={`md:hidden absolute top-full left-0 right-0 mt-2 
-        bg-[#042053]/95 backdrop-blur-md 
+        bg-[#042053]/95 backdrop-blur-md z-1
         border border-white/10 rounded-lg 
         shadow-xl overflow-hidden
         transition-all duration-300 ease-in-out

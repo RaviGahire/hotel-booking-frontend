@@ -5,38 +5,33 @@ import { useNavigate } from 'react-router-dom'
 
 
 export const ContextProvider = ({ children }) => {
-    const [loggedInUser, setLoggedInUser] = useState({})
-    const [hotel, setHotel] = useState({})
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [hotels, setHotels] = useState([]);
 
-    // console.log(loggedInUser)
-    // console.log(hotel)
+  const logout = () => {
+    localStorage.removeItem("token");
+    setLoggedInUser({});
+  };
 
-    //Logout Global
-    const logout = () => {
-        localStorage.removeItem("token")
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = await FetchAllBackendData("auth/users/me");
+        const hotelsData = await FetchAllBackendData("admin/hotels");
 
-    useEffect(() => {
-        ; (
-            async () => {
-                // endpoint method data
-                const currentUser = await FetchAllBackendData('auth/users/me')
-                // console.log(currentUser)
-                setLoggedInUser(currentUser)
-                //fetch all hotel data
-                const hotelsdata = await  FetchAllBackendData('admin/hotels')
-                setHotel(hotelsdata)
-                
-            }
-        )()
+        setLoggedInUser(user);
+        setHotels(hotelsData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
+    fetchData();
+  }, []);
 
-    }, [loggedInUser,hotel])
-
-
-    return (
-        <ContextData.Provider value={{ loggedInUser, logout,hotel }}>
-            {children}
-        </ContextData.Provider>
-    )
-}
+  return (
+    <ContextData.Provider value={{ logout, hotels, loggedInUser }}>
+      {children}
+    </ContextData.Provider>
+  );
+};

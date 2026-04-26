@@ -8,6 +8,8 @@ import { AdminDashboard } from '../components/dashboard/AdminDashboard'
 import { VendorDashboard } from '../components/dashboard/VendorDashboard'
 import { BookingPage } from '../pages/public/BookingPage'
 import { HotelDetailPage } from '../pages/public/HotelDetailPage'
+import { AddHotel } from '../components/hotel/AddHotel'
+import {  UpdateHotel } from '../components/hotel/UpdateHotel'
 
 export const AppRoutes = () => {
     return (
@@ -22,6 +24,8 @@ export const AppRoutes = () => {
                     <Route path='/vendor' element={<VendorDashboard />} />
                     <Route path='/hotels' element={<HotelDetailPage />} />
                     <Route path='/booking' element={<BookingPage />} />
+                    <Route path='/add-hotel' element={<AddHotel />} />
+                    <Route path='/update-hotel/:hotelId' element={<UpdateHotel />} />
                 </Routes>
             </MainLayout>
         </Router>

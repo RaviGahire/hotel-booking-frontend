@@ -46,7 +46,7 @@ export const TextareaField = ({
   return (
     <div className="w-full mb-4">
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium  mb-1">
           {label}
         </label>
       )}
