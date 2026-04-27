@@ -50,36 +50,54 @@ export const ExploreHotels = () => {
                     </div>
                 </div>
 
-                {/* BOTTOM SECTION: Hotel Display */}
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Hotel cards */}
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredHotels.length > 0 ? (
                         filteredHotels.map((hotel) => (
-                            <div key={hotel._id} className="backdrop-blur-md rounded-2xl overflow-hidden border border-slate-200 hover:shadow-lg transition-shadow">
-                                <img
-                                    src={ 'https://media.istockphoto.com/id/1028621094/photo/service-bell-on-hotel-reception-desk.jpg?s=2048x2048&w=is&k=20&c=-YJfkchCeNBeSOyAgj6PdWO1turxXOjCoLjOLbtRRRY='}
-                                    alt={hotel.name}
-                                    className="w-full h-48 object-cover"
-                                />
-                                <div className="p-5">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h3 className="font-bold text-lg text-slate-800">{hotel.name}</h3>
-                                        <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">
+                            <div
+                                key={hotel._id}
+                                className="group backdrop-blur-xl bg-white/30 rounded-md overflow-hidden border border-white/40 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                            >
+                                {/* Image Container */}
+                                <div className="relative h-52 overflow-hidden">
+                                    <img
+                                        src={'https://media.istockphoto.com/id/1028621094/photo/service-bell-on-hotel-reception-desk.jpg?s=2048x2048&w=is&k=20&c=-YJfkchCeNBeSOyAgj6PdWO1turxXOjCoLjOLbtRRRY='}
+                                        alt={hotel.name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute top-4 right-4 backdrop-blur-md bg-white/70 px-3 py-1 rounded-full shadow-sm">
+                                        <span className="text-xs font-bold tracking-wider text-slate-900 flex items-center gap-1">
                                             ⭐ {hotel.rating}
                                         </span>
                                     </div>
-                                    <p className="text-slate-500 text-sm mb-4">📍 {hotel.location?.city}</p>
+                                </div>
+
+                                {/* Content Section */}
+                                <div className="p-6">
+                                    <div className="mb-4">
+                                        <h3 className="text-xl font-semibold text-slate-900 leading-tight tracking-tight mb-1">
+                                            {hotel.name}
+                                        </h3>
+                                        <p className="flex items-center gap-1.5 text-slate-600 text-sm font-medium tracking-wide">
+                                            <span className="text-blue-500/80 text-base">📍</span>
+                                            {hotel.location?.city}
+                                        </p>
+                                    </div>
+
                                     <button
                                         onClick={() => navigate(`/hotel/${hotel._id}`)}
-                                        className="w-full py-2 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors"
+                                        className="w-full py-3 bg-slate-900 text-white rounded-2xl text-sm font-semibold tracking-wide uppercase hover:bg-black active:scale-95 transition-all"
                                     >
-                                        View Details
+                                        Explore Details
                                     </button>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <div className="col-span-full text-center py-20">
-                            <p className="text-slate-400 text-xl font-medium">No hotels found matching your search.</p>
+                        <div className="col-span-full text-center py-32">
+                            <h3 className="text-slate-400 text-2xl font-light tracking-tight italic">
+                                No hotels found matching your search.
+                            </h3>
                         </div>
                     )}
                 </div>
