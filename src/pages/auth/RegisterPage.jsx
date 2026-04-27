@@ -89,15 +89,13 @@ export const RegisterPage = () => {
       <div className="absolute top-30  left-0 right-0 p-5 flex items-center justify-center max-w-7xl">
 
         {/* Card with blur */}
-        <div className=" backdrop-blur-sm rounded-md 
-    p-3 md:p-4 shadow-2xl w-full max-w-3xl">
-
+        <div className=" backdrop-blur-sm rounded-md p-3 md:p-4 shadow-2xl w-full max-w-95">
           {/* Header */}
-          <div className="mb-4">
-            <p className="text-[#ecedee]/50 text-xs font-semibold tracking-widest uppercase mb-1">
+          <div className="mb-4 text-center">
+            <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-1">
               Get Started
             </p>
-            <h2 className="text-2xl font-bold text-[#ecedee] tracking-tight">
+            <h2 className="text-2xl font-bold text-white uppercase tracking-tight">
               Create Account
             </h2>
           </div>
@@ -123,7 +121,7 @@ export const RegisterPage = () => {
                 error={errors.fullName}
               />
               <InputField
-                label="Username"
+                label="User Name"
                 name="userName"
                 placeholder="Your username"
                 value={formData.userName}

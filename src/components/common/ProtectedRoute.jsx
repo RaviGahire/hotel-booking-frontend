@@ -22,7 +22,7 @@ export const ProtectedRoute = ({ allowedRoles, children }) => {
     if (loggedInUser.role === 'customer') return <Navigate to="/customer" replace />;
     
     // Fallback if role is unknown
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // 3. If they are authorized, show the requested page

@@ -59,7 +59,7 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 `text-sm font-medium px-3 py-1.5 rounded-md transition-all duration-200
                 ${isActive
-                  ? 'text-white bg-white/20'
+                  ? 'text-neutral-700 bg-white'
                   : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`
               }
@@ -76,12 +76,12 @@ export const Navbar = () => {
           <Link
            to={dashboard}
             className="flex items-center gap-2 
-            bg-white/10 border border-white/20 
-            px-3 py-1.5 rounded-md cursor-pointer hover:bg-white/20 transition-all duration-200">
+            bg-neutral-600 border border-white/20 
+            px-3 py-1.5 rounded-md cursor-pointer hover:bg-neutral-400/20 transition-all duration-200">
             <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
               <IconUser size={13} className="text-white" />
             </div>
-            <span className="text-white/90 text-sm font-medium">{loggedInUser.name}</span>
+            <span className="text-white/90 text-sm font-medium">{loggedInUser.userName}</span>
             <IconChevronDown size={14} className="text-white/60" />
           </Link>
         ) : (

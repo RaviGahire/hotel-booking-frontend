@@ -22,12 +22,11 @@ export const InputField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 transition
-        ${
-          error
-            ? "border-red-500 focus:ring-red-400"
-            : "border-gray-300 focus:ring-blue-400"
-        }`}
+        className={`w-full px-3 py-2 text-white rounded-lg border text-sm focus:outline-none focus:ring-2 transition
+        ${error
+            ? "border-red-500 focus:ring-red-400/50"
+            : "border-gray-300 focus:ring-blue-400/50"
+          }`}
       />
 
       {error && <p className="text-red-500 text-xs mt-1 absolute top-15">{error}</p>}
@@ -56,12 +55,11 @@ export const TextareaField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:ring-2 transition resize-none
-        ${
-          error
+        className={`w-full px-3 py-2  rounded-lg border text-sm focus:outline-none focus:ring-2 transition resize-none
+        ${error
             ? "border-red-500 focus:ring-red-400"
             : "border-gray-300 focus:ring-blue-400"
-        }`}
+          }`}
       />
 
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
@@ -80,7 +78,7 @@ export const SelectField = ({
 }) => {
   return (
     <div className="w-full mb-4">
-      
+
       {label && (
         <label className="block text-sm font-medium mb-1">
           {label}
@@ -91,17 +89,16 @@ export const SelectField = ({
         name={name}
         value={value || ""}
         onChange={onChange}
-        className={`w-full px-3 py-2 text-black cursor-pointer rounded-lg border text-sm bg-white focus:outline-none focus:ring-2 transition
-        ${
-          error
-            ? "border-red-500 focus:ring-red-400"
-            : "border-gray-300 focus:ring-blue-400"
-        }`}
+        className={`w-full px-3 py-2 text-black cursor-pointer rounded-lg border text-sm  focus:outline-none focus:ring-2 transition
+        ${error
+            ? "border-red-500 focus:ring-red-400/50"
+            : "border-gray-300 focus:ring-blue-400/50"
+          }`}
       >
         <option value="">{defaultOpt}</option>
 
         {options.map((opt, i) => (
-          <option key={i} value={opt}>
+          <option className="bg-transparent backdrop-blur-2xl" key={i} value={opt}>
             {opt}
           </option>
         ))}

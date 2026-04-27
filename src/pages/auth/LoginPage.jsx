@@ -54,19 +54,17 @@ export const LoginPage = () => {
   };
   return (
  <LayOutSkeleton bgImage={'https://images.pexels.com/photos/35215789/pexels-photo-35215789.jpeg'}>
-
   <div className="absolute inset-0 top-30  flex items-center justify-center px-4">
-
     {/* Card */}
-    <div className="backdrop-blur-sm border border-white/15 rounded-2xl 
-      p-5 md:p-7 shadow-2xl w-full max-w-2xl">
+    <div className="backdrop-blur-sm border border-white/30 rounded-2xl 
+      p-5 md:p-7 shadow-md w-full max-w-80">
 
       {/* Header */}
-      <div className="mb-5">
-        <p className="text-[#ecedee]/50 text-xs font-semibold tracking-widest uppercase mb-1">
+      <div className="mb-5 text-center">
+        <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-1">
           Get Started
         </p>
-        <h2 className="text-2xl font-bold text-[#ecedee] tracking-tight">
+        <h2 className="text-2xl font-bold text-[#ecedee] tracking-tight uppercase">
           Login
         </h2>
       </div>
@@ -103,7 +101,7 @@ export const LoginPage = () => {
           Login
         </button>
 
-        <p className="text-sm text-center text-neutral-800">
+        <p className="text-sm text-center text-neutral-200">
           Don't have an account?{" "}
           <Link
             to="/register"
